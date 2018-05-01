@@ -1,0 +1,52 @@
+ <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg" color-on-scroll="100">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="http://www.elloit.xin">Elloit King</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blogv3:index' %}" >
+                            <i class="material-icons">home</i><span style="font-size: 16px">主页</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blogv3:about' %}" >
+                            <i class="material-icons">face</i><span style="font-size: 16px">关于</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blogv3:timeline' %}" >
+                            <i class="material-icons">timeline</i><span style="font-size: 16px">时间轴</span>
+                        </a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                            <i class="material-icons">books</i><span style="font-size: 16px">教程</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-with-icons">
+                            <a href="#" class="dropdown-item">
+                                <i class="material-icons">layers</i> Python
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="material-icons">content_paste</i> Django
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline my-2 my-lg-0 col-" action="{% url 'blogv3:search' %}" method="get">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="word">
+                            <button class="btn btn-outline-success btn-raised btn-round" type="submit">
+                                <i class="material-icons">search</i>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>

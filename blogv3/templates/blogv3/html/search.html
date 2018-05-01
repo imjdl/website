@@ -1,0 +1,53 @@
+{% extends 'blogv3/section/base.html' %}
+{% block page_title %}
+    搜索
+{% endblock %}
+{% block page_content %}
+<div class="container row">
+            <div class="col-md-8 mr-auto ml-auto">
+                <!--搜索显示-->
+                <div class="card-header">
+                    搜索 "{{ word }}"  共有 <span class="text-danger">{{ arts|length }}</span> 条结果
+                </div>
+                <!--end-->
+                {% for art in arts %}
+                    <div class="card card-nav-tabs">
+                        <div class="card-body">
+                        <h3 class="card-title">{{ art.article_title }}</h3>
+                        <h6 class="card-description">类型: {{ art.article_type.type_content }}; 发布于: {{ art.article_date }}; 作者: {{ art.article_auth }}; 阅读:{{ art.article_scannum }}; 评论:{{ art.article_commentnum }};</h6>
+                        <hr>
+                        <div style="height: 100px;overflow: hidden">
+                            {{ art.article_content | safe }}
+                        </div>
+                        <a href="{% url 'blogv3:article' art.article_id  %}" class="btn btn-primary">继续阅读</a>
+                    </div>
+                    </div>
+                {% endfor %}
+                <!--分页-->
+{#                <div class="container-fluid">#}
+{#                    <nav aria-label="Page navigation">#}
+{#                        <ul class="pagination justify-content-center">#}
+{#                            <li class="page-item">#}
+{#                                <a class="page-link" href="#" aria-label="Previous">#}
+{#                                    <span aria-hidden="true">&laquo;</span>#}
+{#                                    <span class="sr-only">Previous</span>#}
+{#                                </a>#}
+{#                            </li>#}
+{#                            <li class="page-item active"><a class="page-link" href="#">1</a></li>#}
+{#                            <li class="page-item"><a class="page-link" href="#">2</a></li>#}
+{#                            <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+{#                            <li class="page-item"><a class="page-link" href="#">4</a></li>#}
+{#                            <li class="page-item"><a class="page-link" href="#">5</a></li>#}
+{#                            <li class="page-item"><a class="page-link" href="#">6</a></li>#}
+{#                            <li class="page-item">#}
+{#                                <a class="page-link" href="#" aria-label="Next">#}
+{#                                    <span aria-hidden="true">&raquo;</span>#}
+{#                                    <span class="sr-only">Next</span>#}
+{#                                </a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </nav>#}
+{#                </div>#}
+            </div>
+        </div>
+{% endblock %}

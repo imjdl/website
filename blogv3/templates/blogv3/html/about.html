@@ -1,0 +1,105 @@
+{% extends 'blogv3/section/base.html' %}
+{% load static %}
+{% block page_title %}
+    关于
+{% endblock %}
+{% block body_style %}
+    class="profile-page"
+{% endblock %}
+{% block page_body %}
+    {% include 'blogv3/section/nav.html' %}
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url('{% static "blogv3/img/city.jpg" %}');"></div>
+    <div class="main main-raised">
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="profile">
+                        <div class="avatar">
+                            <img src="{% static 'blogv3/img/logocat.png' %}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                        </div>
+                        <div class="name">
+                            <h3 class="title">Elloit King</h3>
+                            <h6>Coder & Amateur white hat hacker</h6>
+                            <a href="https://github.com/imjdl" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-github"></i></a>
+                            <a href="https://www.instagram.com/elloitking" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description text-center">
+                <p>一个即将毕业的计算机专业的大学生，一个对未来充满期待的梦想家。一个不甘平凡，不甘落寞的挑战者。</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="profile-tabs">
+                        <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
+                                    <i class="material-icons">camera</i> 学习
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#works" role="tab" data-toggle="tab">
+                                    <i class="material-icons">palette</i> 工作
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                                    <i class="material-icons">favorite</i> 爱好
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content tab-space">
+                <div class="tab-pane active gallery" id="studio">
+                    <div class="row">
+                        <div class="col-md-10 mr-auto ml-auto">
+                            <ol class="list-group text-secondary">
+                                <li class="h4">Linux 爱好者，Kali linux 狂热分子</li>
+                                <li class="h4">擅长Python、C。对Java、php、matlab以及网页制作有所了解</li>
+                                <li class="h4">业余白帽子、喜欢研究Web层面的一些漏洞</li>
+                                <li class="h4">资深 <span class="badge badge-danger">单身狗</span>，拒绝所有狗粮</li>
+                            </ol>
+                        </div>
+                        <div class="col-md-2 mr-auto ml-auto">
+                            <img src="{% static 'blogv3/img/skill.jpg' %}" alt="skill.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane text-center gallery" id="works">
+                    <div class="row">
+                        <div class="col-md-3 ml-auto">
+                            <img src="{% static 'blogv3/img/edu.jpeg' %}" alt="">
+                        </div>
+                        <div class="col-md-7 mr-auto">
+                            <h1>求职中。。。</h1>
+                            <h3>理想中的工作</h3>
+                            <h3>Web安全工程师</h3>
+                            <h3>Python 开发工程师</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane text-center gallery" id="favorite">
+                    <div class="row">
+                        <div class="col-md-2 ml-auto">
+                            <img width="60%" class="img-fluid" src="{% static 'blogv3/img/me.jpg' %}" alt="">
+                             <h1>soccer</h1>
+                        </div>
+                         <div class="col-md-5 ml-auto">
+                             <h3>The Big Bang Theory </h3>
+                             <img src="{% static 'blogv3/img/shell.jpeg' %}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-3 ml-auto">
+                             <h2>Game of Thrones Season</h2>
+                             <img class="img-fluid" src="{% static 'blogv3/img/king.jpeg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

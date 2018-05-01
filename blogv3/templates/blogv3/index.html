@@ -1,0 +1,96 @@
+{% extends 'blogv3/section/base.html' %}
+{% load static %}
+{% block page_title %}
+    Elloit King Blog
+{% endblock %}
+{% block page_content %}
+    <div class="container row">
+            <div class="col-md-8 mr-auto ml-auto">
+                {% for art in arts %}
+                <div class="card card-nav-tabs article_card">
+                    <div class="card-body">
+                        <h3 class="card-title"><a target="_blank" href="{% url 'blogv3:article' art.article_id %}">{{ art.article_title }}</a></h3>
+                        <h6 class="card-description">类型: {{ art.article_type.type_content }}; 发布于: {{ art.article_date }}; 作者: {{ art.article_auth }}; 阅读:{{ art.article_scannum }}; 评论:{{ art.article_commentnum }};</h6>
+                        <hr>
+                        <div style="height: 100px;overflow: hidden">
+                            {{ art.article_content | safe }}
+                        </div>
+                        <a href="{% url 'blogv3:article' art.article_id  %}" class="btn btn-primary">继续阅读</a>
+                    </div>
+                </div>
+                {% endfor %}
+                <!--分页-->
+                <div class="container-fluid">
+                    <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if articles_page.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="{% url 'blogv3:index' %}?p={{ articles_page.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% for i in pages %}
+                                {% if i == articles_page.number %}
+                                    <li class="page-item active"><a class="page-link" href="{% url 'blogv3:index' %}?p={{ i }}">{{ i }}</a></li>
+                                {% elif i == '...' %}
+                                    <li class="page-item"><a class="page-link">{{ i }}</a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="{% url 'blogv3:index' %}?p={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                        {% endfor %}
+
+                        {% if articles_page.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="{% url 'blogv3:index' %}?p={{ articles_page.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                </div>
+            </div>
+            <div class="col-md-4 mr-auto ml-auto">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <a><i class="material-icons">cloud</i><span>标签云</span></a>
+                    </div>
+                    <div class="card-body">
+                        {% for type in types %}
+                        <button type="button" class="btn {{ sizes | random }} {{ colors | random }}">{{ type }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+                <hr>
+                <div class="card">
+                    <div class="card-header text-center">
+                        <a><i class="material-icons">book</i><span>热门文章</span></a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            {% for hart in hotarts %}
+                            <tr><td><a class="a_style" href="{% url 'blogv3:article' hart.article_id  %}"><i class="material-icons">visibility</i>&nbsp;{{ hart.article_title }}</a></td><td><span class="badge badge-danger">{{ hart.article_scannum }}</span></td></tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <hr>
+                <div class="card">
+                    <div class="card-header text-center">
+                        <a><i class="material-icons">assessment</i><span>归档</span></a>
+                    </div>
+                    <div class="card-body">
+                       <table class="table table-hover">
+                           {% for i in year_month_number %}
+                                  <tr><td><a class="a_style" href="#"><i class="material-icons">today</i>&nbsp;{{ i.date }}</a></td><td><span class="badge badge-info">{{ i.conter }}</span></td></tr>
+                           {% endfor %}
+                       </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'blogv3/section/base.html' %}
+{% block page_title %}
+    时间轴
+{% endblock %}
+{% block page_content %}
+    <div>
+        <div>
+            {% regroup dates by year as dates_by_year %}
+            <ul class="text-white border-left">
+                {% for month in dates_by_year %}
+                 <li>
+                     <h1><span class="badge badge-danger">{{ month.grouper }} 年</span></h1>
+                     <ul>
+                         {% for m in month.list %}
+                         <li>
+                             <h2><span class="badge badge-primary">{{ m | date:'m-d' }}</span></h2>
+                             <ul>
+                                 {% for art in articles %}
+                                      {% if m == art.article_date %}
+                                          <li><h3><span class="badge badge-info"><a class="text-light" href="{% url 'blogv3:article' art.article_id %}">{{ art.article_title }}</a></span></h3></li>
+                                      {% endif %}
+                                 {% endfor %}
+                             </ul>
+                         </li>
+                         {% endfor %}
+                     </ul>
+                 </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

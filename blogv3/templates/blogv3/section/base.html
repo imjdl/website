@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>{% block page_title %}Blog{% endblock %}</title>
+    <link rel="icon" href="{% static 'blogv3/img/logocat.png' %}">
+    <link rel="stylesheet" href="{% static 'blogv3/css/material-kit.css' %}">
+    <link rel="stylesheet" href="{% static 'blogv3/css/top/image.css' %}">
+    <link rel="stylesheet" href="{% static 'blogv3/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'blogv3/css/highlights/zenburn.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    {% block page_style %}{% endblock %}
+</head>
+<body {% block body_style %}{% endblock %}>
+{% block page_body %}
+<div class="container">
+    {% include 'blogv3/section/nav.html' %}
+    <br>
+    <br>
+    <div class="section" id="carousel">
+        {% block page_content %}
+        {% endblock %}
+    </div>
+    <!-- 尾部版权-->
+    <footer class="footer ">
+        <div class="container">
+            <div class="copyright pull-center">
+                Copyright &copy;2017-
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> elloit king blog.
+            </div>
+        </div>
+    </footer>
+</div>
+        <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            {% block title %}
+                错误
+            {% endblock %}
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% block modalbody %}
+              {% endblock %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block page_script %}
+{% endblock %}
+<!--   Core JS Files   -->
+<script src="{% static 'blogv3/js/core/jquery.min.js' %}"></script>
+<script src="{% static 'blogv3/js/core/popper.min.js' %}"></script>
+<script src="{% static 'blogv3/js/bootstrap-material-design.js' %}"></script>
+
+<!-- Plugin for Date Time Picker and Full Calendar Plugin-->
+<script src="{% static 'blogv3/js/plugins/moment.min.js' %}"></script>
+
+<!-- Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+<script src="{% static 'blogv3/js/plugins/bootstrap-select.js' %}"></script>
+
+<!-- Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="{% static 'blogv3/js/plugins/bootstrap-datetimepicker.min.js' %}"></script>
+
+<!-- Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="{% static 'blogv3/js/plugins/nouislider.min.js' %}"></script>
+
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script src="{% static 'blogv3/js/material-kit.js' %}"></script>
+<!--回到顶部-->
+<script src="{% static 'blogv3/js/jquery.scrollUp.min.js' %}"></script>
+<script src="{% static 'blogv3/js/top.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% extends 'blogv3/section/base.html' %}
+{% load settings_value %}
+{% load static %}
+{% block page_title %}
+    {{ art.article_title }}
+{% endblock %}
+{% block page_content %}
+<div class="container row">
+    <div class="col-md-12 mr-auto ml-auto">
+        <div class="card card-nav-tabs">
+            <div class="card-body">
+                        <h3 class="card-title">{{ art.article_title }}</h3>
+                        <h6 class="card-description">类型: {{ art.article_type.type_content }}; 发布于: {{ art.article_date }}; 作者: {{ art.article_auth }}; 阅读:{{ art.article_scannum }}; 评论:{{ art.article_commentnum }};</h6>
+                        <hr>
+                        <div>
+                            {{ art.article_content | safe }}
+                        </div>
+                    </div>
+            <hr>
+            <div class="card-footer">
+                        {% if islogin %}
+                        <form name="form_comment" style="width: 100%">
+                            {% csrf_token %}
+                            <input type="hidden" id="artid" value="{{ art.article_id }}">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">{{ username }} 评论:</label>
+                                <textarea placeholder="少于300字" class="form-control" name="textarea" id="textarea" rows="3"></textarea>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 ml-auto mr-auto">
+                                    <input type="text" class="form-control" name="code" id="code" placeholder="验证码"/>
+                                </div>
+                                <div class="col-md-2 ml-auto mr-auto">
+                                    <img src="{% url "blogv3:captcha" %}" class="form-control img-rounded" alt="验证码"  onclick="this.src = {% url 'blogv3:captcha' %} + Math.random();"/>
+                                </div>
+                                <div class="col-md-4 mr-auto ml-auto">
+                                    <button class="btn btn-round btn-warning" type="button" onclick="sendcomment()">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% else %}
+                        <h3 class="text-secondary">评论请先验证&nbsp;&nbsp;<a target="_blank" href="https://github.com/login/oauth/authorize?client_id={% settings_value 'CLIENT_ID' %}&redirect_uri={% settings_value 'REDIRECT_URI' %}"><button class="btn btn-just-icon btn-round btn-github"><i class="fa fa-github"></i></button></a></h3>
+                        {% endif %}
+                    </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        {% for com in coms %}
+        <div class="card">
+            <div class="card-body row">
+                <div class="col-md-8 ml-auto mr-auto"><h4 class="text-secondary">{{ com.com_user.name }} </h4></div>
+                <div class="col-md-4 ml-auto mr-auto"><h5 class="text-secondary">{{ com.com_date }}</h5></div>
+                <div class="col-md-12 ml-auto mr-auto">
+                    <p>{{ com.com_content }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block page_script %}
+    <script>var commetnurl = {% url 'blogv3:comment' %}</script>
+    <script src="{% static 'blogv3/js/conments.js' %}"></script>
+{% endblock %}
+{% block modalbody %}
+    <div id="modalbody"></div>
+{% endblock %}

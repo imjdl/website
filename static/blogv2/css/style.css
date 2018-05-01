@@ -1,0 +1,40 @@
+body{
+    background-color: #050505;
+    background-image: url("../img/bcg.jpg");
+    background-position: center top;
+    background-repeat: repeat-x;
+    color: #2e2e2e;
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 20px;
+    background-attachment:fixed;
+}
+a{
+    text-decoration:none;
+    color:#333;
+}
+a:hover{
+    text-decoration:none;
+    color:#333;
+}
+
+#alldiv{
+    width: 80%;
+}
+
+.nav-title{
+    font-size: 18px;
+}
+
+.leabel-cloud{
+    margin-top: 2px;
+}
+
+.hot-article{
+    margin-top: 3px;
+}
+
+.contact-ul li{
+    display: inline-block;
+    margin-left: 10px;
+}

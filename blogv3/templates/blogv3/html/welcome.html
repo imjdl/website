@@ -1,0 +1,12 @@
+{% extends 'blogv3/section/base.html' %}
+{% block page_title %}
+    Welcome My blog
+{% endblock %}
+{% block page_content %}
+<div class="container" align="center">
+    <img class="img-rounded" width="100px" src="{{ user.avatar_url }}" alt="">
+    <h2 class="text-secondary">Welcome {{ user.name }} to My blog</h2>
+    <h3 class="text-secondary">回到文章页面请刷新</h3>
+    <h4><a href="#" onclick="window.close();">点击关闭页面</a></h4>
+</div>
+{% endblock %}
