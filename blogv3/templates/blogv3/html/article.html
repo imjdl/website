@@ -6,6 +6,7 @@
 {% endblock %}
 {% block page_content %}
 <div class="container row">
+    {% if art %}
     <div class="col-md-12 mr-auto ml-auto">
         <div class="card card-nav-tabs">
             <div class="card-body">
@@ -57,6 +58,16 @@
         </div>
         {% endfor %}
     </div>
+    {% else %}
+     <div class="col-md-12 mr-auto ml-auto">
+        <div class="card card-nav-tabs">
+            <div class="card-body">
+                <h2 class="text-center">Sorry !!! No article Here!!!</h2>
+            </div>
+            <hr>
+        </div>
+    </div>
+{% endif %}
 </div>
 {% endblock %}
 {% block page_script %}
