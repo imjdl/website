@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^search/', views.search, name='search'),
     url(r'^login/', views.login, name='login'),
     url(r'^comment/', views.comment, name='comment'),
+    url(r'^type/(?P<pk>[\S]*)$', views.labelcloud, name="labeltype"),
     # url(r'^staymessage/', views.staymessage, name='staymessage'),
 ]
 # handler404 = views.page_not_found

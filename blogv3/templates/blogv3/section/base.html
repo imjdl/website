@@ -27,7 +27,7 @@
     <!-- 尾部版权-->
     <footer class="footer ">
         <div class="container">
-            <div class="copyright pull-center">
+            <div class="copyright text-white pull-center">
                 Copyright &copy;2017-
                 <script>
                     document.write(new Date().getFullYear())
@@ -61,8 +61,6 @@
   </div>
 </div>
 {% endblock %}
-{% block page_script %}
-{% endblock %}
 <!--   Core JS Files   -->
 <script src="{% static 'blogv3/js/core/jquery.min.js' %}"></script>
 <script src="{% static 'blogv3/js/core/popper.min.js' %}"></script>
@@ -85,5 +83,7 @@
 <!--回到顶部-->
 <script src="{% static 'blogv3/js/jquery.scrollUp.min.js' %}"></script>
 <script src="{% static 'blogv3/js/top.js' %}"></script>
+{% block page_script %}
+{% endblock %}
 </body>
 </html>

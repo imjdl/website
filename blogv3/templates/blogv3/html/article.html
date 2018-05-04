@@ -5,15 +5,15 @@
     {{ art.article_title }}
 {% endblock %}
 {% block page_content %}
-<div class="container row">
-    {% if art %}
+<div class="container row" id="content">
+{% if art %}
     <div class="col-md-12 mr-auto ml-auto">
         <div class="card card-nav-tabs">
             <div class="card-body">
                         <h3 class="card-title">{{ art.article_title }}</h3>
                         <h6 class="card-description">类型: {{ art.article_type.type_content }}; 发布于: {{ art.article_date }}; 作者: {{ art.article_auth }}; 阅读:{{ art.article_scannum }}; 评论:{{ art.article_commentnum }};</h6>
                         <hr>
-                        <div>
+                        <div class="article_page">
                             {{ art.article_content | safe }}
                         </div>
                     </div>
@@ -73,6 +73,9 @@
 {% block page_script %}
     <script>var commetnurl = {% url 'blogv3:comment' %}</script>
     <script src="{% static 'blogv3/js/conments.js' %}"></script>
+    <script>
+    $(".article_page img").addClass("img-fluid");
+    </script>
 {% endblock %}
 {% block modalbody %}
     <div id="modalbody"></div>

@@ -7,6 +7,7 @@ body{
     font-family: Arial;
     font-size: 14px;
     line-height: 20px;
+    background-attachment:fixed;
 }
 .a_style{
     color: black;

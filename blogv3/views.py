@@ -244,6 +244,45 @@ def comment(request):
     return JsonResponse({'info': 3, "comtent": textarea, 'user': user.name, 'date': nowtime.strftime("%Y年%m月%d日 %H:%M")})
 
 
+def labelcloud(request, pk):
+
+    type_id = gettype_id(pk)
+
+    if type_id == None:
+        arts = []
+    else:
+        from .models import Article
+        arts = Article.objects.filter(article_type=type_id)
+        for art in arts:
+            art.article_content = markdown(art.article_content, extensions=[
+                "markdown.extensions.extra",
+                "markdown.extensions.abbr",
+                "markdown.extensions.attr_list",
+                "markdown.extensions.def_list",
+                "markdown.extensions.fenced_code",
+                "markdown.extensions.footnotes",
+                "markdown.extensions.tables",
+                "markdown.extensions.smart_strong",
+                "markdown.extensions.admonition",
+                "markdown.extensions.codehilite",
+                "markdown.extensions.headerid",
+                "markdown.extensions.meta",
+                "markdown.extensions.nl2br",
+                "markdown.extensions.sane_lists",
+                "markdown.extensions.smarty",
+                "markdown.extensions.toc",
+                "markdown.extensions.wikilinks"])
+    # 读取标签
+    types = gettypes()
+    # 热门文章(浏览量)
+    hotarts = Article.objects.order_by('-article_scannum')[:5]
+    colors = ["btn-primary", "btn-info", "btn-success", "btn-danger", "btn-warning", "btn-rose"]
+    sizes = ["btn-sm", "btn-lg", ""]
+    return render(request, 'blogv3/html/labelcloud.html',
+                  context={'arts': arts, 'types': types, 'hotarts': hotarts, 'year_month_number': getarching(),
+                  "colors": colors, "sizes": sizes, "label": type_id})
+
+
 def sendmail(title, msg):
     from django.core.mail import send_mail
     send_mail(title, msg, '18238670823@163.com',
@@ -253,6 +292,14 @@ def sendmail(title, msg):
 def gettypes():
     from .models import Type
     return ["".join(x) for x in Type.objects.values_list('type_content')]
+
+
+def gettype_id(ty):
+    from .models import Type
+    try:
+        return Type.objects.get(type_content=ty)
+    except Type.DoesNotExist:
+        return None
 
 
 def getpages(val, nowpage):
