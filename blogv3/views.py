@@ -174,6 +174,8 @@ def login(request):
                       client_secret+ "&code="+code + "&redirect_uri=" + redirect_uri, headers=headers)
     re = requests.get("https://api.github.com/user?" + re.text, headers=headers)
     res = json.loads(re.text)
+    if res['name'] == None:
+        res['name'] = res['login']
     try:
         user = User.objects.get(id=res['id'])
         user.name = res['name']
