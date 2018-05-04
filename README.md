@@ -14,9 +14,12 @@ _ _ _
 6. `sudo  python3 manage.py makemigrations` 和 ` sudo python3 manage.py migrate`
 7. `sudo python3 manage.py collectstatic`
 8. `sudo python3 manage.py runserver 80 --insecure`
-9. `python3 manage.py createsuperuser` 创建超级用户
+9. `python3 manage.py createsuperuser` 创建超级用户,访问 http://url/admin 进入后台管理
 10. apache 部署 Django 参考 http://blog.elloit.xin/article/page/3/
 _ _ _
 
 ## 最后
+#### 首页
 ![](demo/选区_020.png)
+#### 登录页面
+![](demo/选区_025.png)

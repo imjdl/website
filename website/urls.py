@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf.urls import url, include
 from blogv3.views import index
 urlpatterns = [
-    url(r'elloit/', admin.site.urls),
+    url(r'admin/', admin.site.urls),
     url(r'^', include(('blogv3.urls', 'blogv3'), namespace='blogv3')),  # ctrl + B 看源码
     url(r'^$', index)
 ]
