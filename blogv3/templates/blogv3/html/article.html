@@ -11,7 +11,7 @@
         <div class="card card-nav-tabs">
             <div class="card-body">
                         <h3 class="card-title">{{ art.article_title }}</h3>
-                        <h6 class="card-description">类型: {{ art.article_type.type_content }}; 发布于: {{ art.article_date }}; 作者: {{ art.article_auth }}; 阅读:{{ art.article_scannum }}; 评论:{{ art.article_commentnum }};</h6>
+                        <h6 class="card-description">类型: {{ art.article_type.type_content }}; 发布于: {{ art.article_date }}; 作者: {{ art.article_auth }}; 阅读:{{ art.article_scannum }}; 评论:{{ coms|length }};</h6>
                         <hr>
                         <div class="article_page">
                             {{ art.article_content | safe }}
