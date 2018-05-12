@@ -63,7 +63,7 @@
                     <div class="card-body">
                        <table class="table table-hover">
                            {% for i in year_month_number %}
-                                  <tr><td><a class="a_style" href="#"><i class="material-icons">today</i>&nbsp;{{ i.date }}</a></td><td><span class="badge badge-info">{{ i.conter }}</span></td></tr>
+                                  <tr><td><a class="a_style" href='{% url "blogv3:archiving" %}?year={{ i.year }}&mounth={{ i.mounth }}'><i class="material-icons">today</i>&nbsp;{{ i.date }}</a></td><td><span class="badge badge-info">{{ i.conter }}</span></td></tr>
                            {% endfor %}
                        </table>
                     </div>
