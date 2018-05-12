@@ -283,6 +283,46 @@ def labelcloud(request, pk):
                   context={'arts': arts, 'types': types, 'hotarts': hotarts, 'year_month_number': getarching(),
                   "colors": colors, "sizes": sizes, "label": type_id})
 
+def archiving(request):
+    from .models import Article
+    year = request.GET.get("year", None)
+    mounth = request.GET.get("mounth", None)
+    badsituation = (None, "")
+    if year in badsituation or mounth in badsituation:
+        return render(request, "404.html", status=404)
+    arts = []
+    articles = Article.objects.all()
+    for i in articles:
+        if i.article_date.strftime("%Y") == year and i.article_date.strftime("%m") == mounth:
+            i.article_content = markdown(i.article_content, extensions=[
+                "markdown.extensions.extra",
+                "markdown.extensions.abbr",
+                "markdown.extensions.attr_list",
+                "markdown.extensions.def_list",
+                "markdown.extensions.fenced_code",
+                "markdown.extensions.footnotes",
+                "markdown.extensions.tables",
+                "markdown.extensions.smart_strong",
+                "markdown.extensions.admonition",
+                "markdown.extensions.codehilite",
+                "markdown.extensions.headerid",
+                "markdown.extensions.meta",
+                "markdown.extensions.nl2br",
+                "markdown.extensions.sane_lists",
+                "markdown.extensions.smarty",
+                "markdown.extensions.toc",
+                "markdown.extensions.wikilinks"])
+            arts.append(i)
+    # 读取标签
+    types = gettypes()
+    # 热门文章(浏览量)
+    hotarts = articles.order_by('-article_scannum')[:5]
+    colors = ["btn-primary", "btn-info", "btn-success", "btn-danger", "btn-warning", "btn-rose"]
+    sizes = ["btn-sm", "btn-lg", ""]
+    return render(request, "blogv3/html/arching.html", context={'arts': arts, 'types': types, 'hotarts': hotarts, 'year_month_number': getarching(), "colors": colors, "sizes": sizes})
+
+
+
 
 def sendmail(title, msg):
     from django.core.mail import send_mail
@@ -345,7 +385,7 @@ def getarching():
     for key in conter:
         # year_month_number.append([key[0], key[1], conter[key]])
         # year_month_number.append(key[0] + "年" + key[1] + "月" + "("+ str(conter[key]) + ")")
-        year_month_number.append({"date": key[0] + "年" + key[1] + "月","conter": conter[key]})
+        year_month_number.append({"date": key[0] + "年" + key[1] + "月", "year": key[0], "mounth": key[1], "conter": conter[key]})
     year_month_number.sort(key=lambda x: x["date"], reverse=True)
     return year_month_number
 
