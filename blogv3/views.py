@@ -247,13 +247,12 @@ def comment(request):
 
 
 def labelcloud(request, pk):
-
+    from .models import Article
     type_id = gettype_id(pk)
 
     if type_id == None:
         arts = []
     else:
-        from .models import Article
         arts = Article.objects.filter(article_type=type_id)
         for art in arts:
             art.article_content = markdown(art.article_content, extensions=[
